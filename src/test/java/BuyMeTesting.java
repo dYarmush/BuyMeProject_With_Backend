@@ -1,12 +1,17 @@
+import pages.HomeScreen;
+import pages.PickBusinessPage;
+import pages.RegistrationPage;
+import pages.SenderReceiverPage;
+import utils.DriverSingleton;
+import utils.ReadXML;
+import utils.Reporting;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
 
-public class BuyMeTesting extends Reporting{
+public class BuyMeTesting extends Reporting {
     private WebDriver driver = DriverSingleton.getDriverInstance();
 
     @BeforeClass
@@ -19,29 +24,27 @@ public class BuyMeTesting extends Reporting{
         RegistrationPage regPage = new RegistrationPage();
         regPage.register();
         test = extent.createTest("test01RegisterNewAccount","Test registering new account/login in " +
-                "to exsiting account");
+                "to existing account");
     }
 
     @Test
-    public void test02ChooseGift() throws InterruptedException {
+    public void test02ChooseGift() {
        HomeScreen home = new HomeScreen();
        home.chooseGift();
-       test = extent.createTest("test02ChooseGift");
+       test = extent.createTest("test02ChooseGift","Testing choosing a gift.");
     }
     @Test
     public void test03ChooseBusiness(){
 
         PickBusinessPage pb=new PickBusinessPage();
         pb.chooseBusiness();
-        test = extent.createTest("test03ChooseBusiness");
-
+        test = extent.createTest("test03ChooseBusiness", "Testing choosing a business.");
     }
     @Test
     public void test04SenderReceiverInfo() {
         SenderReceiverPage sRPage = new SenderReceiverPage();
         sRPage.sendInfo();
-        test = extent.createTest("test04SenderReceiverInfo");
-
+        test = extent.createTest("test04SenderReceiverInfo", "Test sender and receiver information input.");
     }
     @AfterClass
     public void tearDown(){

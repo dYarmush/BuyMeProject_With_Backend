@@ -1,19 +1,14 @@
+package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.*;
-import org.testng.Assert;
-
+import utils.DriverSingleton;
 import java.time.Duration;
 import java.util.List;
 
 public class HomeScreen extends BasePage{
     private WebDriver driver = DriverSingleton.getDriverInstance();
-    private WebElement element;
-    public WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
     private List <WebElement> dropdowns;
 
     public void chooseGift(){
@@ -45,10 +40,4 @@ public class HomeScreen extends BasePage{
     public void pressFindMeAGift(){
         clickOnElement(By.cssSelector("a[rel='nofollow']"));
     }
-    public void assertURL(){
-        try {
-            Assert.assertEquals(driver.getCurrentUrl(), ReadXML.getData("URL2"));
-        }
-        catch(Exception e){}
-        }
 }

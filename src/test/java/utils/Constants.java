@@ -1,4 +1,4 @@
-import org.openqa.selenium.By;
+package utils;
 
 public class Constants {
 

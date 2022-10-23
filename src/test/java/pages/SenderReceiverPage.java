@@ -1,14 +1,12 @@
+package pages;
+import utils.DriverSingleton;
+import utils.ReadXML;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import java.io.File;
-
-public class SenderReceiverPage extends BasePage{
-    private WebElement element;
-    private WebDriver driver=DriverSingleton.getDriverInstance();
+public class SenderReceiverPage extends BasePage {
     public void pressForSomeoneElse(){}
 
     public void sendInfo(){
@@ -26,7 +24,7 @@ public class SenderReceiverPage extends BasePage{
     public void enterReceiverName(){
         try {
             sendKeys(By.cssSelector("input[maxlength='25']"), ReadXML.getData("RECEIVER"));
-            Assert.assertEquals(getWebElement(By.cssSelector("input[maxlength='25']")).getAttribute("value"), ReadXML.getData("RECEIVER"));
+            Assert.assertEquals(getWebElement(By.cssSelector("input[data-parsley-required-message='מי הזוכה המאושר? יש להשלים את שם המקבל/ת']")).getAttribute("value"), ReadXML.getData("RECEIVER"));
         }catch (Exception e){}
     }
     public void pickEvent(){
@@ -68,7 +66,5 @@ public class SenderReceiverPage extends BasePage{
     public void pressPayment(){
         clickOnElement(By.cssSelector("button[type='submit']"));
     }
-    public void assertions()throws Exception{
 
-    }
 }

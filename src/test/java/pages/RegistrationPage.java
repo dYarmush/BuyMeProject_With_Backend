@@ -1,14 +1,15 @@
+package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
+import utils.DriverSingleton;
 import java.time.Duration;
 
 public class RegistrationPage extends BasePage {
 
-    private WebDriver driver=DriverSingleton.getDriverInstance();
-    private WebElement webElement;
+    private WebDriver driver= DriverSingleton.getDriverInstance();
+
     public void register(){
         beginRegistration();
         login();
@@ -18,10 +19,18 @@ public class RegistrationPage extends BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         sendKeys(By.cssSelector("input[placeholder='מייל'"),"ozzy@ozzy.com");
         sendKeys(By.cssSelector("input[placeholder='סיסמה'"),"Ozzy1234");
+        clickOnElement(By.cssSelector("svg[xmlns='http://www.w3.org/2000/svg']"));
         clickOnElement(By.cssSelector("button[type='submit']"));
 
     }
-    public void beginRegistration() {clickOnElement(By.className("notSigned"));}
+    public void beginRegistration() {
+        clickOnElement(By.cssSelector("li[class='notSigned']"));
+    }
+
+    /**
+     * Creates a new user using given details. Fails since user is already in the system.
+     * Therefore, it is not called upon.
+     */
     public void signup(){
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         clickOnElement(By.cssSelector("span[class='text-link theme']"));

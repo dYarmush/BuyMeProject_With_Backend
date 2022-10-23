@@ -1,10 +1,11 @@
+package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
+import utils.DriverSingleton;
 import java.util.List;
 
 public class BasePage {
-    public WebElement getWebElement(By locator){
+    public static WebElement getWebElement(By locator){
         return DriverSingleton.getDriverInstance().findElement(locator);
     }
 
@@ -17,19 +18,12 @@ public class BasePage {
     }
 
     public void clickOnElement(By locator) {
-        try {
-            getWebElement(locator).click();
-        } catch (Exception e) {
-            //test.fail("details", MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(driver, "picName")).build());
-        }
+          getWebElement(locator).click();
+
     }
         public void clickOnElement (WebElement element){
-            try {
-                element.click();
-            } catch (Exception e) {
-                //test.fail("details", MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(driver, "picName")).build());
-            }
-        }
+             element.click();
+          }
     public static void clearField(WebElement e){
         e.clear();
     }
