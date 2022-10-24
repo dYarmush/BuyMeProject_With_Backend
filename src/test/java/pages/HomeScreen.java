@@ -2,21 +2,32 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.DriverSingleton;
-import java.time.Duration;
 import java.util.List;
 
+/**
+ * HomeScreen page extends BasePage
+ * finds elements and interacts with them on the BuyMe.co.il home screen/search page/
+ */
 public class HomeScreen extends BasePage{
     private WebDriver driver = DriverSingleton.getDriverInstance();
     private List <WebElement> dropdowns;
 
+    /**
+     * Method that calls all the other functions
+     */
     public void chooseGift(){
         choosePricePoint();
         chooseRegion();
         chooseCategory();
         pressFindMeAGift();
     }
+
+    /**
+     * Selects the price point for the gift card.
+     * I had issues with a popup when not registering a new user/logging in, used .refresh() to remove the popup
+     * Uses dropdowns List
+     */
     public void choosePricePoint()  {
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
        // wait.until(ExpectedConditions.elementToBeClickable(By.className("selected-text")));
@@ -24,19 +35,33 @@ public class HomeScreen extends BasePage{
         }catch (Exception c){}
         //driver.navigate().refresh();  //clears pop up if not logging in
         dropdowns = getListOfWebElements(By.className("selected-text"));
-        dropdowns.get(0).click();
+        clickOnElement(dropdowns.get(0));
        clickOnElement(By.cssSelector("li[value='2']"));
 
     }
+
+    /**
+     * Method that chooses the region for the giftcard.
+     * Uses dropdowns List
+     */
     public void chooseRegion(){
-        dropdowns.get(1).click();
+        clickOnElement(dropdowns.get(1));
         clickOnElement(By.cssSelector("li[value='11']"));
 
     }
+
+    /**
+     * Method that chooses the category for the gift card
+     * Uses dropdowns List
+     */
     public void chooseCategory(){
-        dropdowns.get(2).click();
+        clickOnElement(dropdowns.get(2));
         clickOnElement(By.cssSelector("li[value='75']"));
     }
+
+    /**
+     * Presses the find Me a Gift button.
+     */
     public void pressFindMeAGift(){
         clickOnElement(By.cssSelector("a[rel='nofollow']"));
     }

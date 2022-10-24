@@ -15,10 +15,18 @@ import java.time.Duration;
 import static utils.Reporting.extent;
 import static utils.Reporting.test;
 
+/**
+ * Extras extends Base page for functionality
+ */
 public class Extras extends BasePage {
     private static WebDriver driver=DriverSingleton.getDriverInstance();
     private static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
+    /**
+     * Gets the ball size from the loading page.
+     * Needs the page to stop in order to do so. Must change the PageLoadStrategy.EAGER in the DriverSingleton to
+     * PageLoadStrategy.NONE in order for the JS to stop the page.
+     */
     public static void printBallSize(){
         //in order to run have to change the chromeOptions to "PageLoadStrategy.NONE"
         driver.get("https://www.buyme.co.il");
@@ -27,7 +35,9 @@ public class Extras extends BasePage {
         System.out.println( BasePage.getWebElement(By.cssSelector("div[class='bounce2']")).getSize());
     }
 
-
+    /**
+     * Asserst alert message when trying to continue on login page without putting in any information.
+     */
     public void assertAlertMessage(){
 //        try{ driver.get(ReadXML.getData("URL"));}
 //        catch (Exception e){}
@@ -36,6 +46,10 @@ public class Extras extends BasePage {
         clickOnElement(By.cssSelector("button[gtm='כניסה ל-BUYME']"));
         Assert.assertEquals(getWebElement(By.cssSelector("li[class='parsley-required']")).getText(),"כל המתנות מחכות לך! אבל קודם צריך מייל וסיסמה");
     }
+
+    /**
+     * Takes a screenshot of the bottom of the business page and adds it to the report.
+     */
     public void businessPageScreenShot(){
         try{  driver.get(ReadXML.getData("URL2"));}
         catch (Exception c){}
@@ -49,6 +63,10 @@ public class Extras extends BasePage {
                 "C:\\Users\\doviy\\Box\\Automation\\BuyMeAutomationProject\\businessPagePic")).build());
 
     }
+
+    /**
+     * Prints the text color of the "למי לשלוח" text from Send/Receive Page in both RGB and Hex.
+     */
     public void printTextColor(){
         try{        driver.get(ReadXML.getData("URL"));}
         catch(Exception e){}

@@ -1,20 +1,31 @@
 package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.DriverSingleton;
 import java.time.Duration;
+
+/**
+ * RegistrationPage extends BasePage
+ * Clicks on register/Signin and can either login or register new account.
+ */
 
 public class RegistrationPage extends BasePage {
 
     private WebDriver driver= DriverSingleton.getDriverInstance();
 
+    /**
+     * Method that calls all the other functionalities.
+     */
     public void register(){
         beginRegistration();
         login();
         //signup();
     }
+
+    /**
+     * Login method to login using the given username.
+     */
     public void login(){
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         sendKeys(By.cssSelector("input[placeholder='מייל'"),"ozzy@ozzy.com");
@@ -23,6 +34,10 @@ public class RegistrationPage extends BasePage {
         clickOnElement(By.cssSelector("button[type='submit']"));
 
     }
+
+    /**
+     *Clicks on the register/sign-in button.
+     */
     public void beginRegistration() {
         clickOnElement(By.cssSelector("li[class='notSigned']"));
     }

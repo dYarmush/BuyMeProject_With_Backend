@@ -5,14 +5,26 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+/**
+ * Driver singelton class maintains one instance of the driver throughout the various classes.
+ */
 public class DriverSingleton {
 
     private static WebDriver driver;
     private static ChromeOptions chromeOptions = new ChromeOptions();
 
-    public DriverSingleton() throws Exception {
+    /**
+     * Constructor for the Driver Singleton
+     */
+    public DriverSingleton()  {
     }
 
+    /**
+     * Checks and gets the instance of the driver, will set the driver based off of the data.xml "browserType" field
+     * ChromeOptions are there for the Extras.printBallSize(); which needs the page to stop. Need to change
+     * PageLoadStrategy.EAGER to PageLoadStrategy.None in order for it to work.
+     * @return the driver instance.
+     */
     public static WebDriver getDriverInstance(){
         String type;
         try {
