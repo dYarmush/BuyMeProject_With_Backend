@@ -28,8 +28,8 @@ public class RegistrationPage extends BasePage {
      */
     public void login(){
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        sendKeys(By.cssSelector("input[placeholder='מייל'"),"ozzy@ozzy.com");
-        sendKeys(By.cssSelector("input[placeholder='סיסמה'"),"Ozzy1234");
+        sendKeys(By.cssSelector("input[placeholder='מייל'"),"UserName");
+        sendKeys(By.cssSelector("input[placeholder='סיסמה'"),"Password");
         clickOnElement(By.cssSelector("svg[xmlns='http://www.w3.org/2000/svg']"));
         clickOnElement(By.cssSelector("button[type='submit']"));
 
@@ -57,10 +57,10 @@ public class RegistrationPage extends BasePage {
         sendKeys(By.cssSelector("input[placeholder='מייל'"),"ozzy@ozzy.com");
           Assert.assertEquals(getWebElement(By.cssSelector("input[placeholder='מייל'")).getAttribute("value"),"ozzy@ozzy.com");
 //        //password
-       sendKeys(By.id("valPass"),"Ozzy1234");
+       sendKeys(By.id("valPass"),"Password");
 
 //        //verify PW
-       sendKeys(By.cssSelector("input[placeholder='אימות סיסמה'"),"Ozzy1234");
+       sendKeys(By.cssSelector("input[placeholder='אימות סיסמה'"),"Password");
 //        //Agreement
         clickOnElement(By.className("fill"));
 
