@@ -28,7 +28,7 @@ public class HomeScreen extends BasePage{
      * I had issues with a popup when not registering a new user/logging in, used .refresh() to remove the popup
      * Uses dropdowns List
      */
-    public void choosePricePoint()  {
+    private void choosePricePoint()  {
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
        // wait.until(ExpectedConditions.elementToBeClickable(By.className("selected-text")));
         try {Thread.sleep(4000);//couldn't get implicit or explicit wait to work correctly...
@@ -44,7 +44,7 @@ public class HomeScreen extends BasePage{
      * Method that chooses the region for the giftcard.
      * Uses dropdowns List
      */
-    public void chooseRegion(){
+    private void chooseRegion(){
         clickOnElement(dropdowns.get(1));
         clickOnElement(By.cssSelector("li[value='11']"));
 
@@ -54,7 +54,7 @@ public class HomeScreen extends BasePage{
      * Method that chooses the category for the gift card
      * Uses dropdowns List
      */
-    public void chooseCategory(){
+    private void chooseCategory(){
         clickOnElement(dropdowns.get(2));
         clickOnElement(By.cssSelector("li[value='75']"));
     }
@@ -62,7 +62,7 @@ public class HomeScreen extends BasePage{
     /**
      * Presses the find Me a Gift button.
      */
-    public void pressFindMeAGift(){
+    private void pressFindMeAGift(){
         clickOnElement(By.cssSelector("a[rel='nofollow']"));
     }
 }

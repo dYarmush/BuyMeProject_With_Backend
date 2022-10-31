@@ -1,5 +1,10 @@
 package utils;
 import com.aventstack.extentreports.MediaEntityBuilder;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,6 +15,12 @@ import pages.HomeScreen;
 import pages.PickBusinessPage;
 import pages.RegistrationPage;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 import static utils.Reporting.extent;
@@ -19,6 +30,8 @@ import static utils.Reporting.test;
  * Extras extends Base page for functionality
  */
 public class Extras extends BasePage {
+    public Extras(){}
+
     private static WebDriver driver=DriverSingleton.getDriverInstance();
     private static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
@@ -80,5 +93,43 @@ public class Extras extends BasePage {
                 .getCssValue("color");
         System.out.println("Rgba color is "+color);
         System.out.println("Hex code is "+ Color.fromString(color).asHex());
+    }
+
+    /**
+     * Method that gets the driver type and URL from a JSON array.
+     * @param URLorDriverRequest - can get the value of driver or URL field
+     * @return returns driver and/or url
+     * @throws IOException
+     */
+    public static String getURLAndDriverFromJSON(String URLorDriverRequest) throws IOException {
+
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        Request request = new Request.Builder()
+                .url("https://my-json-server.typicode.com/Dgotlieb/JSFakeServer/config")
+                .build();
+        Response response = client.newCall(request).execute();
+        String jsonData = response.body().string();
+        response.close();
+        JSONArray json_arr = new JSONArray(jsonData);
+
+        JSONObject urlKey = (JSONObject) json_arr.get(0);
+        JSONObject driverKey = (JSONObject) json_arr.get(1);
+
+        String browser = driverKey.getString("driver");
+        String url = urlKey.getString("URL");
+        String URLOrDriver=null;
+        if (URLorDriverRequest.equalsIgnoreCase("driver")) {
+            URLOrDriver= browser;
+        } else if (URLorDriverRequest.equalsIgnoreCase("url")) {
+            URLOrDriver=url;
+        }
+        return URLOrDriver;
+    }
+    private Path getPictureFromWeb(){
+       Path image =  Paths.get(System.getProperty("user.dir")+"\\image.jpg");
+        try(InputStream in = new URL("http://cdn.ecommercedns.uk/files/7/202457/0/5905500/woven-patch-official-merch-ozzy-osbourne-cut-out-logo.jpg").openStream()){
+            Files.copy(in,image);
+        }catch(IOException e){e.printStackTrace();}
+        return image;
     }
 }

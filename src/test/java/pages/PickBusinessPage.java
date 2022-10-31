@@ -30,7 +30,7 @@ private WebDriver driver = DriverSingleton.getDriverInstance();
     /**
      * Creates a list of WebElements that correspond to the available businesses and chooses the 20 business.
      */
-    public void pickBusiness() {
+    private void pickBusiness() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
        List <WebElement>listOfBusinesses= getListOfWebElements(By.cssSelector("span[class='name bm-subtitle-1']"));
 
@@ -40,14 +40,14 @@ private WebDriver driver = DriverSingleton.getDriverInstance();
     /**
      * After the business is chosen, inputs the value wanted for the giftcard (100שח)
      */
-    public void enterAmount(){
+    private void enterAmount(){
         sendKeys(By.cssSelector("input[placeholder='הכנס סכום']"),"100");
     }
 
     /**
      * Asserts the URL based on the XML files "URL2" which is based on the selection from the HomeScreen.
      */
-    public void assertURL(){
+    private void assertURL(){
         try {
             Assert.assertEquals(driver.getCurrentUrl(), ReadXML.getData("URL2"));
         }
@@ -57,7 +57,7 @@ private WebDriver driver = DriverSingleton.getDriverInstance();
     /**
      * Presses the choose button.
      */
-    public void choose(){
+    private void choose(){
         clickOnElement(By.cssSelector("button[type='submit']"));
     }
 }

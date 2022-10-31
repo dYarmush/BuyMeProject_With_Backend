@@ -2,6 +2,7 @@ import pages.HomeScreen;
 import pages.PickBusinessPage;
 import pages.RegistrationPage;
 import pages.SenderReceiverPage;
+import utils.DBConnectionSingleton;
 import utils.DriverSingleton;
 import utils.ReadXML;
 import utils.Reporting;
@@ -10,13 +11,17 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 
 public class BuyMeTesting extends Reporting {
     private WebDriver driver = DriverSingleton.getDriverInstance();
+    private static Connection con = DBConnectionSingleton.getInstance();
 
     @BeforeClass
     public void runBefore() {
-        try{DriverSingleton.getDriverInstance().get(ReadXML.getData("URL"));}
+        try{DriverSingleton.getDriverInstance();}
         catch(Exception e){}
     }
 
@@ -63,9 +68,12 @@ public class BuyMeTesting extends Reporting {
      * Ends the testing by pushing the Extent report data to the HTML report and quits the driver.
      */
     @AfterClass
-    public void tearDown(){
+    public void tearDown() throws SQLException {
+
+        con.close();
         extent.flush();
         driver.quit();
+
     }
 
 }

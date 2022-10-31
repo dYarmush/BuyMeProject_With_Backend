@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <config>
-    <browserType>Chrome</browserType>
+    <browserType>chrome</browserType>
     <URL>https://www.buyme.co.il</URL>
     <URL2>https://buyme.co.il/search?budget=2&amp;category=75&amp;region=11</URL2>
     <SENDER>Ozzy O</SENDER>

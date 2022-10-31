@@ -27,7 +27,7 @@ public class RegistrationPage extends BasePage {
      * Login method to login using the given username.
      */
     public void login(){
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         sendKeys(By.cssSelector("input[placeholder='מייל'"),"ozzy@ozzy.com");
         sendKeys(By.cssSelector("input[placeholder='סיסמה'"),"Ozzy1234");
         clickOnElement(By.cssSelector("svg[xmlns='http://www.w3.org/2000/svg']"));
@@ -38,7 +38,7 @@ public class RegistrationPage extends BasePage {
     /**
      *Clicks on the register/sign-in button.
      */
-    public void beginRegistration() {
+    private void beginRegistration() {
         clickOnElement(By.cssSelector("li[class='notSigned']"));
     }
 
@@ -46,7 +46,7 @@ public class RegistrationPage extends BasePage {
      * Creates a new user using given details. Fails since user is already in the system.
      * Therefore, it is not called upon.
      */
-    public void signup(){
+    private void signup(){
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         clickOnElement(By.cssSelector("span[class='text-link theme']"));
 

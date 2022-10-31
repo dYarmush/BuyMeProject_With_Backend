@@ -31,14 +31,14 @@ public class SenderReceiverPage extends BasePage {
     /**
      * Clicks on the for someone else option, which is clicked by default.
      */
-    public void pressForSomeoneElse(){
+    private void pressForSomeoneElse(){
         clickOnElement(By.cssSelector("div[gtm='למישהו אחר']"));
     }
 
     /**
      * Enters the receiver name from the data.xml file. (I Used this as the receiver name is also asserted later)
      */
-    public void enterReceiverName(){
+    private void enterReceiverName(){
         try {
             sendKeys(By.cssSelector("input[maxlength='25']"), ReadXML.getData("RECEIVER"));
             Assert.assertEquals(getWebElement(By.cssSelector("input[data-parsley-required-message='מי הזוכה המאושר? יש להשלים את שם המקבל/ת']")).getAttribute("value"), ReadXML.getData("RECEIVER"));
@@ -48,7 +48,7 @@ public class SenderReceiverPage extends BasePage {
     /**
      * Chooses the type of event the giftcard is for.
      */
-    public void pickEvent(){
+    private void pickEvent(){
         clickOnElement(By.cssSelector("span[alt='לאיזה אירוע?']"));
         clickOnElement(By.cssSelector("li[value='32'"));
     }
@@ -56,8 +56,8 @@ public class SenderReceiverPage extends BasePage {
     /**
      * Clears the text area from the default blessing and adds a custom one.
      */
-    public void enterBlessing(){
-        clickOnElement(By.tagName("textarea"));
+    private void enterBlessing(){
+       clickOnElement(By.tagName("textarea"));
        clearField(getWebElement(By.tagName("textarea")));
        sendKeys(By.tagName("textarea"),"May the odds be ever in your favor!");
     }
@@ -65,14 +65,14 @@ public class SenderReceiverPage extends BasePage {
     /**
      * Uploads a picture.
      */
-    public void addPicture(){
+    private void addPicture(){
             sendKeys(By.cssSelector("input[type='file']"),"C:\\Users\\doviy\\Desktop\\ozzy.jpg");
     }
 
     /**
      * Clicks continue, brings us to part 2 of sender/receiver info
      */
-    public void pressContinue(){
+    private void pressContinue(){
         clickOnElement(By.cssSelector("button[type='submit']"));
     }
 
@@ -80,14 +80,14 @@ public class SenderReceiverPage extends BasePage {
      * Clicks on the now option, which is clicked by default.
      */
 
-    public void pressNow(){
+    private void pressNow(){
         clickOnElement(By.cssSelector("div[gtm='עכשיו']"));
     }
 
     /**
      * Chooses the option to send via email and sms
      */
-    public void pickEmailAndSMS(){
+    private void pickEmailAndSMS(){
         clickOnElement(By.cssSelector("svg[gtm='method-sms']"));
         clickOnElement(By.cssSelector("svg[gtm='method-email']"));
     }
@@ -95,7 +95,7 @@ public class SenderReceiverPage extends BasePage {
     /**
      * Enters email and SMS information
      */
-    public void enterEmailAndPhone(){
+    private void enterEmailAndPhone(){
         sendKeys(By.id("sms"),"55 062 0485");
         sendKeys(By.id("email"),"zakk@ozzy.com");
     }
@@ -105,7 +105,7 @@ public class SenderReceiverPage extends BasePage {
      * Only adds info if the field is blank. System by default will add the logged in users info.
      * Asserts the senders name.
      */
-    public void enterSenderName() {
+    private void enterSenderName() {
         try {
             if (getWebElement(By.cssSelector("input[placeholder='שם שולח המתנה'")).getAttribute("value").isBlank()) {
                 sendKeys(By.cssSelector("input[placeholder='שם שולח המתנה'"), ReadXML.getData("SENDER"));
@@ -122,7 +122,7 @@ public class SenderReceiverPage extends BasePage {
      * Clicks the payment button
      * causes and alert to show since the phone humber is invalid.
      */
-    public void pressPayment(){
+    private void pressPayment(){
         clickOnElement(By.cssSelector("button[type='submit']"));
     }
 
