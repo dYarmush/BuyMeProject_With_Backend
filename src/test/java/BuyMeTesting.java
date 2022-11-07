@@ -4,7 +4,6 @@ import pages.RegistrationPage;
 import pages.SenderReceiverPage;
 import utils.DBConnectionSingleton;
 import utils.DriverSingleton;
-import utils.ReadXML;
 import utils.Reporting;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
@@ -31,7 +30,7 @@ public class BuyMeTesting extends Reporting {
     @Test
     public void test01RegisterNewAccount(){
         RegistrationPage regPage = new RegistrationPage();
-        regPage.register();
+        regPage.register("New");
         test = extent.createTest("test01RegisterNewAccount","Test registering new account/login in " +
                 "to existing account");
     }

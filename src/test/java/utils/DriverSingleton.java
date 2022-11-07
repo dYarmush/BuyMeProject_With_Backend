@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * Driver singelton class maintains one instance of the driver throughout the various classes.
@@ -31,25 +29,9 @@ public class DriverSingleton {
     public static WebDriver getDriverInstance() {
 
 
-        //by default will read from JSON
-
         try {
           String type=Extras.getURLAndDriverFromJSON("driver");
           String URL=Extras.getURLAndDriverFromJSON("URL");
-//
-//
-//        if (DBConnectionSingleton.getInstance() != null) {
-//            try {
-//                type = SQLUtilities.readBrowserFromDB();
-//                URL =  SQLUtilities.readURLFromDB();
-//            } catch (SQLException e) {
-//            }
-//        } else
-//            try {
-//                type = ReadXML.getData("browserType");
-//                URL = ReadXML.getData("URL");
-//            } catch (Exception e) {
-//            }
 
         if (driver==null){
             if(type.equalsIgnoreCase("chrome")){

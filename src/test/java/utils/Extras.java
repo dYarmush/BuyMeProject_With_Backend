@@ -52,10 +52,8 @@ public class Extras extends BasePage {
      * Asserst alert message when trying to continue on login page without putting in any information.
      */
     public void assertAlertMessage(){
-//        try{ driver.get(ReadXML.getData("URL"));}
-//        catch (Exception e){}
         RegistrationPage reg=new RegistrationPage();
-        reg.beginRegistration();
+        reg.register("Assert Error");
         clickOnElement(By.cssSelector("button[gtm='כניסה ל-BUYME']"));
         Assert.assertEquals(getWebElement(By.cssSelector("li[class='parsley-required']")).getText(),"כל המתנות מחכות לך! אבל קודם צריך מייל וסיסמה");
     }
@@ -99,7 +97,7 @@ public class Extras extends BasePage {
      * Method that gets the driver type and URL from a JSON array.
      * @param URLorDriverRequest - can get the value of driver or URL field
      * @return returns driver and/or url
-     * @throws IOException
+     * @throws IOException Response object
      */
     public static String getURLAndDriverFromJSON(String URLorDriverRequest) throws IOException {
 

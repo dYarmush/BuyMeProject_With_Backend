@@ -17,10 +17,14 @@ public class RegistrationPage extends BasePage {
     /**
      * Method that calls all the other functionalities.
      */
-    public void register(){
+    public void register(String regType){
+        if(regType.equalsIgnoreCase("New")){
         beginRegistration();
-        login();
-        //signup();
+        signup();} else if (regType.equalsIgnoreCase("returning")) {
+            beginRegistration();
+            login();
+        }else {beginRegistration();}
+
     }
 
     /**

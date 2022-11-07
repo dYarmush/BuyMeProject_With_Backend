@@ -29,17 +29,13 @@ public class HomeScreen extends BasePage{
      * Uses dropdowns List
      */
     private void choosePricePoint()  {
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-       // wait.until(ExpectedConditions.elementToBeClickable(By.className("selected-text")));
         try {Thread.sleep(4000);//couldn't get implicit or explicit wait to work correctly...
         }catch (Exception c){}
         //driver.navigate().refresh();  //clears pop up if not logging in
         dropdowns = getListOfWebElements(By.className("selected-text"));
         clickOnElement(dropdowns.get(0));
        clickOnElement(By.cssSelector("li[value='2']"));
-
     }
-
     /**
      * Method that chooses the region for the giftcard.
      * Uses dropdowns List
